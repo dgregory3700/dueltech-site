@@ -1,45 +1,632 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>DuelTech</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DuelTech | Focused SaaS Products</title>
+  <meta
+    name="description"
+    content="DuelTech is an independent software studio building focused SaaS products, including HarmonyDesk, ContentVeritas, TextPolish, and Entropy Cleaner."
+  />
   <style>
-    body{
-      font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #222;
+    :root {
+      --bg: #06070b;
+      --panel: #0d1017;
+      --panel-2: #111522;
+      --text: #f4f7fb;
+      --muted: #a8b0c2;
+      --line: rgba(255,255,255,0.08);
+      --blue: #2563eb;
+      --blue-2: #3b82f6;
+      --violet: #7c3aed;
+      --shadow: 0 18px 50px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --max: 1160px;
     }
-    h1{margin-bottom:10px;}
-    h2{margin-top:40px;}
-    a{color:#2a6df4;text-decoration:none;}
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.20), transparent 28%),
+        radial-gradient(circle at top right, rgba(124, 58, 237, 0.18), transparent 30%),
+        linear-gradient(180deg, #05060a 0%, #090b12 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(6, 7, 11, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--violet) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+      flex: 0 0 auto;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-2) 100%);
+      color: white;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      white-space: nowrap;
+    }
+
+    .hero {
+      padding: 72px 0 38px;
+    }
+
+    .hero-shell {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(37,99,235,0.22) 0%, rgba(124,58,237,0.18) 100%),
+        rgba(13,16,23,0.82);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+      padding: 56px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #d9e2f2;
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      max-width: 760px;
+    }
+
+    .hero h1 .accent {
+      color: #c9d8ff;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 700px;
+      color: #d5dced;
+      font-size: clamp(1.05rem, 1.5vw, 1.28rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #0b1020;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.03);
+      color: #f1f5fb;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .product-link:hover,
+    .nav-cta:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-card {
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 22px;
+      background: rgba(6, 8, 13, 0.82);
+      padding: 22px;
+    }
+
+    .mini-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: #dce5f8;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    .mini-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mini-panel {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .mini-panel strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .mini-panel p {
+      margin: 0;
+      color: #b4bfd4;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-header {
+      margin-bottom: 22px;
+    }
+
+    .section-header h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 2.7vw, 2.6rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1.02rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
+        var(--panel);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      border-radius: 22px 22px 0 0;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--violet) 100%);
+      opacity: 0.95;
+    }
+
+    .product-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(37,99,235,0.12);
+      border: 1px solid rgba(59,130,246,0.16);
+      color: #cfe0ff;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .product-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+    }
+
+    .product-card .tagline {
+      margin: 0 0 14px;
+      color: #d9e0ef;
+      font-size: 1.02rem;
+    }
+
+    .product-card .desc {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      flex-grow: 1;
+    }
+
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #f8fbff;
+      font-weight: 600;
+      align-self: flex-start;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .info-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.24rem;
+      letter-spacing: -0.03em;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .footer {
+      padding: 26px 0 48px;
+      color: var(--muted);
+    }
+
+    .footer-shell {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .product-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        padding: 28px;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding-top: 4px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      .hero {
+        padding-top: 28px;
+      }
+
+      .hero-grid {
+        padding: 22px;
+      }
+
+      .site-header {
+        position: static;
+      }
+
+      .brand-text span {
+        white-space: normal;
+      }
+
+      .footer-shell {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="DuelTech home">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <strong>DuelTech</strong>
+          <span>Independent software studio</span>
+        </div>
+      </a>
 
-<h1>DuelTech</h1>
-<p>Independent software studio building focused SaaS products.</p>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-<h2>About</h2>
-<p>
-DuelTech is an independent software studio focused on creating practical tools for specialized professional workflows.
-</p>
+      <a class="nav-cta" href="mailto:duel@dueltech.io">duel@dueltech.io</a>
+    </div>
+  </header>
 
-<h2>Current Product</h2>
-<p>
-<strong>HarmonyDesk</strong><br>
-A case, session, and billing workspace built specifically for mediation practices.
-</p>
-<p>
-<a href="https://harmonydesk.ai">Visit HarmonyDesk</a>
-</p>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-shell">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">Focused SaaS products for specific workflows</div>
+              <h1>
+                Software products that
+                <span class="accent">stay clear, useful, and focused.</span>
+              </h1>
+              <p>
+                DuelTech builds practical SaaS products for professionals who need
+                cleaner workflows, simpler tools, and software that does exactly what it says.
+              </p>
 
-<h2>Contact</h2>
-<p>
-duel@dueltech.io
-</p>
+              <div class="hero-actions">
+                <a class="btn-primary" href="#products">View products</a>
+                <a class="btn-secondary" href="mailto:duel@dueltech.io">Contact DuelTech</a>
+              </div>
+            </div>
 
+            <aside class="hero-card" aria-label="Studio summary">
+              <div class="mini-label">
+                <strong>Current portfolio</strong>
+                <span style="color:#9fb2d9;">Live products</span>
+              </div>
+
+              <div class="mini-stack">
+                <div class="mini-panel">
+                  <strong>HarmonyDesk</strong>
+                  <p>Case, session, and billing workspace for mediation practices.</p>
+                </div>
+
+                <div class="mini-panel">
+                  <strong>ContentVeritas • TextPolish • Entropy Cleaner</strong>
+                  <p>
+                    Focused tools for AI content detection, writing analysis, and
+                    deterministic text cleanup.
+                  </p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Products</h2>
+          <p>
+            Each product is built around a narrow use case, clean positioning, and a direct user outcome.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-top">
+              <span class="pill">Mediation SaaS</span>
+            </div>
+            <h3>HarmonyDesk</h3>
+            <p class="tagline">Workspace for solo mediation practices.</p>
+            <p class="desc">
+              HarmonyDesk helps mediators manage cases, sessions, and billing in one focused dashboard.
+            </p>
+            <a class="product-link" href="https://harmonydesk.ai" target="_blank" rel="noopener noreferrer">
+              Visit HarmonyDesk →
+            </a>
+          </article>
+
+          <article class="product-card">
+            <div class="product-top">
+              <span class="pill">AI Detection</span>
+            </div>
+            <h3>ContentVeritas</h3>
+            <p class="tagline">AI content detection API.</p>
+            <p class="desc">
+              ContentVeritas provides fast AI content detection for platforms, products, and verification workflows.
+            </p>
+            <a class="product-link" href="https://contentveritas.com" target="_blank" rel="noopener noreferrer">
+              Visit ContentVeritas →
+            </a>
+          </article>
+
+          <article class="product-card">
+            <div class="product-top">
+              <span class="pill">Writing API</span>
+            </div>
+            <h3>TextPolish</h3>
+            <p class="tagline">Grammar, style, and readability analysis.</p>
+            <p class="desc">
+              TextPolish helps writing tools and content systems analyze and improve clarity through a simple API.
+            </p>
+            <a class="product-link" href="https://textpolish.io" target="_blank" rel="noopener noreferrer">
+              Visit TextPolish →
+            </a>
+          </article>
+
+          <article class="product-card">
+            <div class="product-top">
+              <span class="pill">Structured Output</span>
+            </div>
+            <h3>Entropy Cleaner</h3>
+            <p class="tagline">Turn messy text into clean structure.</p>
+            <p class="desc">
+              Entropy Cleaner reduces semantic drift and produces deterministic structured output from messy text.
+            </p>
+            <a class="product-link" href="https://entropycleaner.io" target="_blank" rel="noopener noreferrer">
+              Visit Entropy Cleaner →
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>About DuelTech</h2>
+          <p>
+            DuelTech is an independent software studio focused on building small, useful software products with clear scope and practical utility.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="info-card">
+            <h3>Studio approach</h3>
+            <p>
+              Products are intentionally focused. The goal is not broad feature sprawl. The goal is software that fits a real workflow and stays easy to understand.
+            </p>
+          </article>
+
+          <article id="contact" class="info-card">
+            <h3>Contact</h3>
+            <p>
+              For product, partnership, or business inquiries:<br />
+              <a href="mailto:duel@dueltech.io" style="color:#dce8ff; font-weight:600;">duel@dueltech.io</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-shell">
+      <div>© 2026 DuelTech</div>
+      <div>Independent software studio</div>
+    </div>
+  </footer>
 </body>
 </html>
