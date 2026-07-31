@@ -403,7 +403,7 @@
       font-size: 0.95rem;
     }
 
-    /* ── Project Goose teaser ── */
+    /* ── Project Goose ── */
     .goose-card {
       position: relative;
       grid-column: 1 / -1;
@@ -415,7 +415,7 @@
       padding: 32px 28px;
       box-shadow: 0 0 60px rgba(251,191,36,0.08), var(--shadow);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 28px;
       overflow: hidden;
@@ -513,6 +513,117 @@
       color: #92857a;
     }
 
+    /* Worker roster */
+    .goose-workers {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .worker-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-size: 0.96rem;
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    .worker-row strong {
+      color: #fde68a;
+    }
+
+    .status-dot {
+      flex: 0 0 auto;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      position: relative;
+      top: -1px;
+    }
+
+    .status-dot.ok { background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.6); }
+    .status-dot.down { background: #f87171; box-shadow: 0 0 8px rgba(248,113,113,0.6); }
+
+    .worker-status {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .worker-status.ok { color: #4ade80; }
+    .worker-status.down { color: #f87171; }
+
+    /* Calla spotlight */
+    .calla-spotlight {
+      position: relative;
+      grid-column: 1 / -1;
+      border: 1px solid rgba(251, 191, 36, 0.20);
+      border-radius: 22px;
+      background: var(--panel-2);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .calla-spotlight::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      background: linear-gradient(180deg, #f59e0b 0%, #fbbf24 60%, #fde68a 100%);
+    }
+
+    .calla-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fbbf24;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .calla-spotlight h3 {
+      margin: 0 0 6px;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+      color: #fff;
+    }
+
+    .calla-sub {
+      margin: 0 0 18px;
+      color: #e2c97e;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    .calla-spotlight p.body {
+      margin: 0 0 16px;
+      color: #c3cbdc;
+      font-size: 0.99rem;
+      max-width: 880px;
+    }
+
+    .calla-spotlight p.body strong {
+      color: #fff;
+    }
+
+    .calla-quote {
+      margin: 22px 0 0;
+      padding: 18px 22px;
+      border-left: 3px solid rgba(251,191,36,0.5);
+      border-radius: 0 14px 14px 0;
+      background: rgba(251,191,36,0.06);
+      color: #e8dcbd;
+      font-style: italic;
+      font-size: 1.02rem;
+      max-width: 880px;
+    }
+
     @media (max-width: 980px) {
       .hero-grid,
       .product-grid,
@@ -584,6 +695,7 @@
 
       <nav class="nav-links" aria-label="Primary">
         <a href="#products">Products</a>
+        <a href="#goose">Project Goose</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -712,27 +824,87 @@
               Visit Entropy Cleaner →
             </a>
           </article>
-          <!-- Project Goose — live -->
+        </div>
+      </div>
+    </section>
+
+    <section id="goose" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Project Goose</h2>
+          <p>
+            DuelTech's internal research operation — a fleet of specialized workers that find, validate,
+            and route opportunities before a single conversation begins.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <!-- Project Goose — overview -->
           <article class="goose-card">
             <div class="goose-body">
               <span class="goose-pill">Active</span>
-              <h3>Project Goose</h3>
+              <h3>The Fleet</h3>
               <p class="goose-tagline">A highly tuned first-step compass for lead sourcing.</p>
               <p class="goose-desc">
-                Goose is a fleet of specialized workers that find, validate, and route opportunities —
-                before a single conversation begins. Each worker is narrowly scoped, independently operated,
-                and built to cut through noise at the top of the funnel.
+                Each worker is narrowly scoped, independently operated, and built to cut through
+                noise at the top of the funnel.
               </p>
-              <p class="goose-desc" style="margin-top: 10px;">
-                <strong style="color: #fde68a;">Chessa</strong> runs continuously with live research and a shadow review layer.
-                <strong style="color: #fde68a;">Paisley</strong> runs on demand, purpose-built for deep signal validation.
-                <strong style="color: #fde68a;">Calla</strong> runs gated live research under a full operator decision ledger — every source vetted, every run on the record.
-              </p>
+
+              <div class="goose-workers">
+                <div class="worker-row">
+                  <span class="status-dot down" aria-hidden="true"></span>
+                  <span><strong>Chessa</strong> — continuous live research with a shadow review layer.
+                    <span class="worker-status down">Offline — under repair</span></span>
+                </div>
+                <div class="worker-row">
+                  <span class="status-dot ok" aria-hidden="true"></span>
+                  <span><strong>Paisley</strong> — runs on demand, purpose-built for deep signal validation.
+                    <span class="worker-status ok">Operational</span></span>
+                </div>
+                <div class="worker-row">
+                  <span class="status-dot ok" aria-hidden="true"></span>
+                  <span><strong>Calla</strong> — gated live research under a full operator decision ledger —
+                    every source vetted, every run on the record.
+                    <span class="worker-status ok">Operational</span></span>
+                </div>
+              </div>
             </div>
             <div class="goose-badge">
-              <span class="goose-badge-label">3 of 3 Live</span>
+              <span class="goose-badge-label">2 of 3 Operational</span>
               <span class="goose-badge-sub">Not for sale.<br>Internal only.</span>
             </div>
+          </article>
+
+          <!-- Calla spotlight -->
+          <article class="calla-spotlight">
+            <span class="calla-eyebrow">Worker Spotlight</span>
+            <h3>Calla</h3>
+            <p class="calla-sub">The DuelTech Opportunity Engine</p>
+
+            <p class="body">
+              At the code level, Calla is a <strong>program</strong> — a Node/TypeScript research engine
+              running on dedicated infrastructure that fetches public web sources, extracts and scores
+              text (including PDFs, and now scanned PDFs via OCR), and produces evidence summaries in
+              run artifacts.
+            </p>
+
+            <p class="body">
+              But that description misses most of what makes Calla <em>Calla</em>. The program is only one
+              component of what's really a <strong>system</strong> — a gated, evidence-governed
+              market-opportunity discovery process. The engine does the fetching and scoring, but the
+              identity of the thing lives just as much in the doctrine wrapped around it: a formal
+              decision ledger, numbered session handoffs, an admission gate that's closed by default,
+              a strict run budget, hard admissibility rules (engine-surfaced evidence counts;
+              AI-side scouting doesn't), and a six-stage validation ladder. Strip those away and you'd
+              have a web scraper with a scoring function. With them, you have a disciplined research
+              instrument with a chain of custody for evidence.
+            </p>
+
+            <blockquote class="calla-quote">
+              "Calla is a systematic market-opportunity discovery system — a live-research engine plus
+              an operator-governed evidentiary process — that evaluates software market candidates
+              through a gated validation pipeline."
+            </blockquote>
           </article>
         </div>
       </div>
@@ -764,7 +936,7 @@
           </article>
         </div>
       </div>
-    </section>
+    </footer>
   </main>
 
   <footer class="footer">
