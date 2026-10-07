@@ -14,7 +14,7 @@ DuelTech builds practical SaaS products for professionals who need cleaner workf
 
 | Product | Description |
 |---|---|
-| [HarmonyDesk](https://harmonydesk.io) | Case, session, and billing workspace for mediation practices |
+| [HarmonyDesk](https://harmonydesk.ai) | Case, session, and billing workspace for mediation practices |
 | [ContentVeritas](https://contentveritas.io) | AI content detection API for platforms and verification workflows |
 | TextPolish | Grammar, style, and readability analysis through a simple API |
 | Entropy Cleaner | Deterministic structured output from messy text |
