@@ -1,5 +1,7 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/index.html" }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/hermes-agent/privacy", "destination": "/hermes-agent/privacy.html" },
+    { "source": "/hermes-agent/terms", "destination": "/hermes-agent/terms.html" }
   ]
 }
