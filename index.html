@@ -543,7 +543,7 @@
     }
 
     .status-dot.ok { background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.6); }
-    .status-dot.down { background: #f87171; box-shadow: 0 0 8px rgba(248,113,113,0.6); }
+    .status-dot.research { background: #fbbf24; box-shadow: 0 0 8px rgba(251,191,36,0.6); }
 
     .worker-status {
       font-size: 0.82rem;
@@ -553,7 +553,7 @@
     }
 
     .worker-status.ok { color: #4ade80; }
-    .worker-status.down { color: #f87171; }
+    .worker-status.research { color: #fbbf24; }
 
     /* Calla spotlight */
     .calla-spotlight {
@@ -1062,9 +1062,10 @@
 
               <div class="goose-workers">
                 <div class="worker-row">
-                  <span class="status-dot down" aria-hidden="true"></span>
-                  <span><strong>Chessa</strong> — continuous live research with a shadow review layer.
-                    <span class="worker-status down">Offline — under repair</span></span>
+                  <span class="status-dot research" aria-hidden="true"></span>
+                  <span><strong>Chessa</strong> — searches public sources in controlled research runs and
+                    checks whether the evidence supports a software opportunity.
+                    <span class="worker-status research">No qualifying opportunity yet</span></span>
                 </div>
                 <div class="worker-row">
                   <span class="status-dot ok" aria-hidden="true"></span>
@@ -1085,7 +1086,7 @@
               </div>
             </div>
             <div class="goose-badge">
-              <span class="goose-badge-label">3 of 4 Operational</span>
+              <span class="goose-badge-label">4 research workers</span>
               <span class="goose-badge-sub">Not for sale.<br>Internal only.</span>
             </div>
           </article>
@@ -1122,45 +1123,35 @@
             </blockquote>
           </article>
 
-          <!-- Chessa spotlight: preserved but hidden while inactive. -->
-          <article class="paisley-spotlight" hidden>
+          <!-- Chessa spotlight -->
+          <article class="paisley-spotlight">
             <span class="paisley-eyebrow">Worker Spotlight</span>
             <h3>Chessa</h3>
-            <p class="paisley-sub">The bounded opportunity-evidence researcher</p>
+            <p class="paisley-sub">Evidence-led software opportunity research</p>
 
             <div class="paisley-meta">
               <span class="paisley-tag">Node / TypeScript</span>
-              <span class="paisley-tag">Bounded autonomous loops</span>
-              <span class="paisley-tag">Shadow review</span>
+              <span class="paisley-tag">Controlled live research</span>
+              <span class="paisley-tag">Operator review</span>
               <span class="paisley-tag">Shaped with ChatGPT</span>
             </div>
 
             <p class="body">
-              <strong>Chessa is in active development and currently offline.</strong> When authorized, it can run
-              bounded research cycles against explicitly selected sources, retain hash-linked primary evidence,
-              and route the result through a proof-first validation pipeline. It is not a continuous,
-              unsupervised decision-maker.
+              Chessa looks for recurring work that software could take off someone's plate. In each approved
+              research run, she searches public sources and saves the exact passages behind her findings so
+              DuelTech can check them directly.
             </p>
 
             <p class="body">
-              Its <strong>shadow review layer</strong> independently examines the retained excerpts, locators,
-              and evidence gaps before search-result snippets. The shadow can challenge a proposed finding,
-              but it has no authority to create a candidate, contact anyone, spend money, or change
-              production state. Those actions remain operator-gated.
+              She checks who does the work, whether the needed data already exists, what work software would
+              remove, who would buy it, and what a real paid solution covers. She recommends whether to
+              advance, park, or reject a lead. DuelTech makes the final call.
             </p>
 
             <p class="body">
-              Chessa is being sculpted collaboratively with <strong>ChatGPT</strong>: each repair, controlled
-              run, and re-audit is recorded in durable handoffs so the system can improve without
-              overstating what the evidence proves.
+              <strong>Chessa has yet to find an opportunity that meets that standard.</strong> Her goal is to
+              give DuelTech enough evidence to decide which software opportunities deserve a closer look.
             </p>
-
-            <blockquote class="paisley-quote">
-              "Chessa is a bounded autonomous researcher with an advisory shadow system: it gathers and
-              preserves evidence, names what is missing, and stops short of action until an operator
-              decides the proof is strong enough."
-              <cite>— Chessa, in active development</cite>
-            </blockquote>
           </article>
 
           <!-- Paisley spotlight -->
