@@ -1,0 +1,398 @@
+{
+  "run": "OE-CONTROLLED-LIVE-RESEARCH-20261021T134618Z",
+  "role": "holdout (noise side only: this run contains no source labeled surface)",
+  "labeledBy": "Claude (independent reviewer), 2026-11-24",
+  "basis": "Title plus retained excerpt in the archived source-queue objects at goose-worker-aven aa12d39. Live pages were not re-fetched.",
+  "labels": {
+    "surface": "Should reach the operator's review list (Park).",
+    "borderline": "Either outcome is acceptable.",
+    "do_not_surface": "Should not reach the review list.",
+    "too_thin": "Not enough retained text to judge. Should stay out of the review list with an extraction reason."
+  },
+  "sources": [
+    {
+      "position": 1,
+      "sourceId": "SRC-LIVE-CONNECTOR-001-F3346DDBD0",
+      "sourceUrl": "https://www.azahcccs.gov/PlansProviders/RatesAndBilling/FFS/claimresubmission.html",
+      "title": "Claim Resubmission and Reconsideration Process",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "State Medicaid instructions for resubmitting claims. Official documentation, not operator testimony.",
+      "archived": {
+        "sourceCategory": "official_documentation",
+        "evidenceQuality": "A",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 431
+      }
+    },
+    {
+      "position": 2,
+      "sourceId": "SRC-LIVE-CONNECTOR-002-DCF12F9B45",
+      "sourceUrl": "https://taskestate.com/guide/how-property-managers-track-maintenance-requests",
+      "title": "How Property Managers Track Maintenance Requests | TaskEstate",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "Park",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 569
+      }
+    },
+    {
+      "position": 3,
+      "sourceId": "SRC-LIVE-CONNECTOR-003-D95264001C",
+      "sourceUrl": "https://github.com/mflr0/Solstice/issues/123",
+      "title": "Issue record card: restore the controls when an edit is refused · Issue #123 · mflr0/Solstice · GitHub",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "GitHub issue about an unrelated software project. Not a business workflow.",
+      "archived": {
+        "sourceCategory": "secondary_commentary",
+        "evidenceQuality": "D",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Reject",
+        "retainedExcerptChars": 596
+      }
+    },
+    {
+      "position": 4,
+      "sourceId": "SRC-LIVE-CONNECTOR-004-D39789498A",
+      "sourceUrl": "https://www.reddit.com/r/automation/comments/1r70ymg/small_business_owners_what_repetitive_task_is/",
+      "title": "Blocked",
+      "label": "too_thin",
+      "expectedOperatorRole": null,
+      "reason": "Blocked or forbidden; nothing retrieved. The Reddit thread title suggests it would be relevant.",
+      "archived": {
+        "sourceCategory": "secondary_commentary",
+        "evidenceQuality": "E",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Reject",
+        "retainedExcerptChars": 74
+      }
+    },
+    {
+      "position": 5,
+      "sourceId": "SRC-LIVE-CONNECTOR-005-FEC16DC963",
+      "sourceUrl": "https://www.reddit.com/r/FreightBrokers/comments/1siez7c/is_it_just_me_or_is_the_manual_math_in_freight/",
+      "title": "Blocked",
+      "label": "too_thin",
+      "expectedOperatorRole": null,
+      "reason": "Blocked or forbidden; nothing retrieved. The Reddit thread title suggests it would be relevant.",
+      "archived": {
+        "sourceCategory": "secondary_commentary",
+        "evidenceQuality": "E",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Reject",
+        "retainedExcerptChars": 74
+      }
+    },
+    {
+      "position": 6,
+      "sourceId": "SRC-LIVE-CONNECTOR-006-B7C42C2A32",
+      "sourceUrl": "https://ramp.com/blog/accounts-payable/invoice-processing-explained",
+      "title": "What Is Invoice Processing? Steps & Best Practices",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 436
+      }
+    },
+    {
+      "position": 7,
+      "sourceId": "SRC-LIVE-CONNECTOR-007-43539CA92A",
+      "sourceUrl": "https://oxmaint.ai/industries/property-management/digitizing-property-maintenance-spreadsheets-to-cmms",
+      "title": "Digitizing Property Maintenance: Moving from Spreadsheets to CMMS",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "Park",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 404
+      }
+    },
+    {
+      "position": 8,
+      "sourceId": "SRC-LIVE-CONNECTOR-008-664643BBB0",
+      "sourceUrl": "https://github.com/tswarren/DepartureDesk/issues/214",
+      "title": "GitHub · Where software is built",
+      "label": "too_thin",
+      "expectedOperatorRole": null,
+      "reason": "GitHub returned an access message; nothing retrieved.",
+      "archived": {
+        "sourceCategory": "secondary_commentary",
+        "evidenceQuality": "D",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Reject",
+        "retainedExcerptChars": 43
+      }
+    },
+    {
+      "position": 9,
+      "sourceId": "SRC-LIVE-CONNECTOR-009-F51D0D1B4D",
+      "sourceUrl": "https://github.com/NousResearch/hermes-agent/issues/139257",
+      "title": "Messaging /retry rewrites the transcript before admission, so any refusal loses the user's turn · Issue #139257 · NousResearch/hermes-agent · GitHub",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "GitHub issue about an unrelated software project. Not a business workflow.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 350
+      }
+    },
+    {
+      "position": 10,
+      "sourceId": "SRC-LIVE-CONNECTOR-010-9105F3CC33",
+      "sourceUrl": "https://github.com/lidge-jun/opencodex/issues/7369",
+      "title": "[Bug] OpenCodex 2.88.0: existing threads fail after model/provider switching when encrypted reasoning is rejected inside HTTP 200 SSE · Issue #7369 · lidge-jun/opencodex · GitHub",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "GitHub issue about an unrelated software project. Not a business workflow.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 500
+      }
+    },
+    {
+      "position": 11,
+      "sourceId": "SRC-LIVE-CONNECTOR-011-C87D226F93",
+      "sourceUrl": "https://github.com/dwest1507/eliza-assessment/issues/99",
+      "title": "A friendly error with \"Try again\" · Issue #99 · dwest1507/eliza-assessment · GitHub",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "GitHub issue about an unrelated software project. Not a business workflow.",
+      "archived": {
+        "sourceCategory": "secondary_commentary",
+        "evidenceQuality": "D",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Reject",
+        "retainedExcerptChars": 158
+      }
+    },
+    {
+      "position": 12,
+      "sourceId": "SRC-LIVE-CONNECTOR-012-287BA36836",
+      "sourceUrl": "https://pickspace.com/blog/property-management-software-vs-spreadsheets",
+      "title": "Property Management Software vs. Spreadsheets (2026) | Pickspace",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most. It quotes a survey figure, which does not make it testimony.",
+      "archived": {
+        "sourceCategory": "public_discussion",
+        "evidenceQuality": "B",
+        "validationDecision": "Park",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 656
+      }
+    },
+    {
+      "position": 13,
+      "sourceId": "SRC-LIVE-CONNECTOR-013-1E6EA26495",
+      "sourceUrl": "https://columbiatechgroup.com/solutions/replace-manual-work",
+      "title": "Reduce Manual Data Entry in Your Business | Columbia Tech Group",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "public_discussion",
+        "evidenceQuality": "B",
+        "validationDecision": "Park",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 268
+      }
+    },
+    {
+      "position": 14,
+      "sourceId": "SRC-LIVE-CONNECTOR-014-30C1CB4ED7",
+      "sourceUrl": "https://support.simplepractice.com/hc/en-us/articles/360016456811-Resolving-claim-rejections",
+      "title": "Forbidden",
+      "label": "too_thin",
+      "expectedOperatorRole": null,
+      "reason": "Blocked or forbidden; nothing retrieved.",
+      "archived": {
+        "sourceCategory": "secondary_commentary",
+        "evidenceQuality": "E",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Reject",
+        "retainedExcerptChars": 76
+      }
+    },
+    {
+      "position": 15,
+      "sourceId": "SRC-LIVE-CONNECTOR-015-43703EEAF5",
+      "sourceUrl": "https://www.laneproof.com/blog/document-automation-freight-ops-bol-data-entry",
+      "title": "Document Automation for Freight Ops: Stop Manual BOL Entry",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "Park",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 447
+      }
+    },
+    {
+      "position": 16,
+      "sourceId": "SRC-LIVE-CONNECTOR-016-A3A3F2FFB3",
+      "sourceUrl": "https://providerscarebilling.com/how-to-handle-claim-denials-and-resubmit/",
+      "title": "How to Handle Claim Denials and Resubmit Successfully - Providers Care Billing LLC",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 420
+      }
+    },
+    {
+      "position": 17,
+      "sourceId": "SRC-LIVE-CONNECTOR-017-798E3C6F06",
+      "sourceUrl": "https://www.easydatasync.com/stop-manual-data-entry",
+      "title": "How to Stop Wasting Hours on Manual Data Entry | Easy Data Sync",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 351
+      }
+    },
+    {
+      "position": 18,
+      "sourceId": "SRC-LIVE-CONNECTOR-018-9ACB3289C6",
+      "sourceUrl": "https://www.brokerpro.com/posts/freight-broker-document-management/",
+      "title": "Freight Broker Document Management | BrokerPro TMS",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "Park",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 443
+      }
+    },
+    {
+      "position": 19,
+      "sourceId": "SRC-LIVE-CONNECTOR-019-0BA66C65FB",
+      "sourceUrl": "https://documentero.com/templates/real-estate/spreadsheet/property-maintenance-log/",
+      "title": "Property Maintenance Log - Spreadsheet Template",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Template download page. No operator, no pain described.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 145
+      }
+    },
+    {
+      "position": 20,
+      "sourceId": "SRC-LIVE-CONNECTOR-020-14B600478C",
+      "sourceUrl": "https://www.mhcautomation.com/blog/common-accounts-payable-issues-and-how-to-solve-them/",
+      "title": "Forbidden",
+      "label": "too_thin",
+      "expectedOperatorRole": null,
+      "reason": "Blocked or forbidden; nothing retrieved.",
+      "archived": {
+        "sourceCategory": "secondary_commentary",
+        "evidenceQuality": "E",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Reject",
+        "retainedExcerptChars": 76
+      }
+    },
+    {
+      "position": 21,
+      "sourceId": "SRC-LIVE-CONNECTOR-021-F117035F3D",
+      "sourceUrl": "https://planergy.com/blog/7-ways-reduce-errors-accounts-payable-ap/",
+      "title": "Accounts Payable Errors & 7 Ways to Avoid Them | PLANERGY Software",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 395
+      }
+    },
+    {
+      "position": 22,
+      "sourceId": "SRC-LIVE-CONNECTOR-022-F51717D915",
+      "sourceUrl": "https://arktms.com/blog/automated-document-generation-freight-broker-tms",
+      "title": "Automated Document Generation for Freight Brokers | Rate Cons, BOLs, Invoices | ARK TMS",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "Park",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 220
+      }
+    },
+    {
+      "position": 23,
+      "sourceId": "SRC-LIVE-CONNECTOR-023-EAD96C3C03",
+      "sourceUrl": "https://www.gethealthie.com/blog/how-to-deal-with-denied-insurance-claims",
+      "title": "How to resubmit denied insurance claims in private practice | Healthie",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "competitor_vendor",
+        "evidenceQuality": "C",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Reject",
+        "retainedExcerptChars": 300
+      }
+    },
+    {
+      "position": 24,
+      "sourceId": "SRC-LIVE-CONNECTOR-024-E08C6AF51F",
+      "sourceUrl": "https://www.sage.com/en-us/blog/what-is-invoice-processing/",
+      "title": "What is Invoice Processing? | Sage Advice US",
+      "label": "do_not_surface",
+      "expectedOperatorRole": null,
+      "reason": "Vendor or service-provider marketing content, not operator testimony. Competitor evidence at most.",
+      "archived": {
+        "sourceCategory": "operator_pain",
+        "evidenceQuality": "B",
+        "validationDecision": "No Candidate",
+        "routeDecision": "Park",
+        "retainedExcerptChars": 421
+      }
+    }
+  ]
+}

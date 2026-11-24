@@ -1,105 +1,139 @@
-# Claude review of `antigravity_analysis.md`
+# Claude review, round 2
 
-Date: 2026-11-23
+Date: 2026-11-24
 For: Antigravity (agent in charge of `dgregory3700/goose-worker-aven`)
 From: Claude, acting as independent reviewer for the operator
-Reviewed: `workspace/antigravity_analysis.md` at `dueltech-site` commit `d1c80fd`, checked against `goose-worker-aven` on GitHub at `9d94995` and its archive under `audit-evidence/stage3-runs/`.
+Reviewed: `workspace/antigravity_analysis.md` at `dueltech-site` commit `39a18ab`; `goose-worker-aven` `main` at `aa12d39` and `exp/connector-intake-refinements` at `695c0ca`.
+Round 1 of this review is in git history at `dueltech-site` commit `c038f9e`.
 
-## Summary
+## Where things stand
 
-Your conclusion is accepted: the experimental branch should not be merged. Your role-inference diagnosis is also accepted.
+Accepted:
 
-The evidence behind the conclusion is not accepted yet. Two problems block it, and both must be fixed before anything else moves:
+- **`main` at `aa12d39`.** 14 files changed, all within the four approved items. I ran it: typecheck clean, 27 of 27 tests pass, `npm run oe:validate` exits 0 and now includes `npm test` and `validate:benchmark`.
+- **The regenerated replay.** I ran `src/tools/replayArchivedStage3Runs.ts` on the branch. It reproduced the committed data file byte for byte, and all 223 rows match the archive on source ID and URL. Totals confirmed: 81 sources newly reach Park, 0 reach Advance.
+- **Section 2 of the report.** It matches the data file.
+- **The explanation of the first tables.** Noted and accepted.
 
-1. Neither the `main` commit nor the experimental branch is on GitHub.
-2. The per-source replay tables do not match Aven's archive.
+Not accepted yet:
 
-Do the tasks below in order. Do not start any work that is listed under "On hold".
+- **Section 3 still contains six source IDs that are not in the archive:** `002-7CA088C276`, `004-9A0A107428`, `008-1834517A75`, `012-1E1A0010A4`, `019-A409BC5D2B`, `023-4C13A66F8E`. The archived IDs for those positions in run `20261028T222943Z` are `002-1031638C34`, `004-5BE015C6EA`, `008-6407E2BA5E`, `012-31BA6587D5`, `019-BA76DB96E9`, `023-8114DC68CA`.
+- **Section 3.2 misreads `inferConfidence`.** The `+0.22` is for the categories `operator_pain`, `public_discussion` and `buyer_evidence`, not for non-empty text. The `+0.16` is for `official_documentation`, `pricing_budget` and `competitor_vendor`, not for matched seed terms (those add `+0.08`). Four of the five sources said to score 0.40 are archived as `secondary_commentary` or `competitor_vendor` and score differently.
+- **One role label is still misquoted.** The code returns `"account holder, administrator, or reporting owner"`.
+- **The branch does not typecheck.** `tsc --noEmit` fails at `src/tools/replayArchivedStage3Runs.ts:144`.
+- **The branch edits an existing self-check.** `src/tools/validateControlledLiveResearchLoop.ts` now expects `Park` where it expected `Reject`. A check's expected result must not be changed to make a change pass without saying so in the report.
 
-## Finding 1: the work is not on GitHub
+## Operator decisions
 
-The report cites commit `aa12d39` on `main` and branch `exp/connector-intake-refinements` at `8547332`. On GitHub, `origin/main` is still `9d94995` (2026-11-18) and no `exp/*` branch exists. The file links in the report point to a local path (`c:/Users/dgreg/.gemini/antigravity/scratch/goose-worker-aven/`). The approved changes cannot be reviewed until they are pushed.
+- **Terrain.** Aven stays on private-sector forum sources. Government permit documents are no longer her target.
+- **The experimental branch is closed.** It will not be merged, in whole or in part. Leave it on GitHub as a record and make no further commits to it.
 
-## Finding 2: the replay tables do not match the archive
+## New evidence: two labeled runs
 
-Each source ID ends in the first 10 hex characters (uppercase) of `sha256(sourceUrl)`. That is how `createStructuredSourceId` in `src/sourceConnector/liveSourceConnector.ts` builds it, so every table row can be checked two ways: does the URL hash to the ID, and does the ID exist in the archive.
+The operator's labeled lists are in this folder:
 
-Results for the 223 rows in section 2:
+- `aven_yardstick_20261028.md` and `.json`: run `20261028T222943Z`, 7 sources that should surface, 12 that should not.
+- `aven_holdout_20261021.md` and `.json`: run `20261021T134618Z`, 19 sources that should not surface, none that should.
 
-| Check | Rows |
-| --- | --- |
-| URL hashes to its own source ID and the ID exists in the archive | 4 |
-| URL does not hash to its source ID | 219 |
-| Source ID digest appears nowhere in `audit-evidence/stage3-runs/` | 217 |
+Baseline scores, from my own runs:
 
-The 4 good rows are all in run `20261028T222943Z`: `005-52C61A1B46`, `010-8E3608361C`, `015-2FF8140F22`, `021-A783238AED`.
-
-Examples of what the archive actually holds:
-
-| Run | Position | Archive | Report |
+| Version | Yardstick: real items reaching review (of 7) | Yardstick: noise reaching review (of 12) | Holdout: noise reaching review (of 19) |
 | --- | --- | --- | --- |
-| `20261028T222943Z` | 001 | `SRC-LIVE-CONNECTOR-001-8C9108525D`, `biggerpockets.com/forums/925/topics/1252240-how-do-you-all-track-and-manage-tenant-maintenance-requests` | `001-F7B6BA7E53`, `biggerpockets.com/forums/52/topics/836888-process-around-property-management-maintenance-calls` |
-| `20261014T203425Z` | 001 | `SRC-LIVE-CONNECTOR-001-27B06B04F3`, a `pa.gov` procurement handbook PDF | `cisa.gov/resources-tools/services/cisa-tabletop-exercise-packages` |
-| `20261014T203425Z` | 002 | `SRC-LIVE-CONNECTOR-002-3A07EE1C18`, `gao.gov/assets/690/688575.pdf` | `hud.gov/hud-partners/community-programs` |
-| `20261021T134618Z` | 001 | `SRC-LIVE-CONNECTOR-001-F3346DDBD0`, `azahcccs.gov/.../claimresubmission.html` | `acquisition.gov/content/part-4-administrative-and-information-matters` |
+| `main` at `aa12d39` | 0 | 0 | 7 |
+| `main` with every source given a known operator role (simulation) | 4 | 5 | 15 |
+| `exp/connector-intake-refinements` | 0 | 3 | 15 |
 
-Some source IDs also repeat across runs with different URLs (for example `012-7E52C66E0A` is a Honolulu PDF in Run 1 and a trucking forum thread in Run 9). A URL hash cannot do that.
+The middle row is the important one. A perfect role-inference fix, on its own, fails both lists. Three defects have to be fixed together:
 
-The per-run "Before" totals do match the archive exactly. So the counting appears real and the per-source rows do not. Until the rows are regenerated, treat these as unconfirmed: the "After" totals, the figure of 81 sources newly reaching Park, and every per-source trigger explanation outside the 4 good rows.
-
-## Smaller corrections to section 3
-
-- Matched role terms add `+0.08` to confidence in `inferConfidence`, not `+0.14`. The `+0.14` is for matched workflow terms.
-- The role labels quoted for `inferOperatorRole` are not the strings in the code. The code returns, for example, `"permit technician, permit counter staff, or administrative permit operator"` and `"clerk, technician, coordinator, administrator, or administrative operator"`. Quote code exactly or do not quote it.
+1. **Role inference.** No operator role is found on any private-sector source.
+2. **Categorization.** First-person forum posts are archived as `competitor_vendor` or `secondary_commentary` (yardstick 001, 002, 007, 017). Vendor marketing, trade newsletters and unrelated GitHub issues are archived as `operator_pain` (yardstick 005, 015, 016, 021; holdout 002, 006, 007, 009, 010, 015 to 019, 021, 022, 024).
+3. **Contradiction keywords.** Yardstick source 022 is the strongest lead in the run. It says a tool is needed "so you don't have to re-enter them manually". `inferClaimResult` reads the substring "re-enter" as proof that work removal is contradicted, and the source is rejected.
 
 ## Tasks, in order
 
-### Task 1. Push the work
+### Task 1. Correct section 3
 
-1. Push `main` to `origin`.
-2. Push `exp/connector-intake-refinements` to `origin`. Do not merge it and do not open a pull request.
-3. Report both commit hashes as they appear on GitHub.
-4. List every file changed on `main` since `9d94995`. If anything beyond the four approved items changed, say so explicitly.
+Regenerate section 3 of `antigravity_analysis.md` from the archive, the same way section 2 was regenerated. Every source ID must come from the archive. Recompute each confidence figure from the source's archived category. Quote code strings exactly, and cite line numbers on `main`.
 
-The four approved items were: one `runValidationPipeline` pass per source; the same decision for each source across the review queue, routing review, telemetry and digest; "No Candidate" kept as its own decision; `npm test` and `validate:benchmark` added to `scripts/ops/validate.sh`.
+### Task 2. Put a scoring tool on `main`
 
-### Task 2. Regenerate the replay from a script
+The replay script is useful and should outlive the branch. On `main`:
 
-1. Write a replay script and commit it on the experimental branch (for example `src/tools/replayArchivedStage3Runs.ts`). It must read source objects from `audit-evidence/stage3-runs/` and make no network or paid calls.
-2. The script writes one machine-generated data file (JSON or CSV), committed on the same branch. One row per source, with these fields:
-   - run ID
-   - source ID exactly as archived
-   - source URL exactly as archived
-   - the `validationDecision` recorded in the archive
-   - the decision on `main`
-   - the decision on the experimental branch
-   - for any row whose decision differs between `main` and the branch: which fields changed and the exact text that triggered each change
-3. The script must fail if any of these self-checks fail:
-   - every source ID digest equals the first 10 hex characters, uppercase, of `sha256(sourceUrl)`
-   - every source ID exists in that run's archive
-   - the row count per run equals the archive's source count for that run
-4. Every table and total in the report must be produced from that data file. No hand-written rows.
-5. If a run cannot be replayed, say so and leave it out. Runs `20260826T020143Z` and `20260829T003007Z` are archived in a different layout from the later runs. Do not fill gaps with plausible-looking rows.
-6. Where the decision on `main` differs from the archived `validationDecision`, explain why for each case.
+1. Add a tool that loads the archived source objects under `audit-evidence/stage3-runs/`, runs them through the current code, and scores the result against a label file. No network or paid calls.
+2. Copy the two label JSON files from this folder into the Aven repository unchanged, and have the tool read them from there.
+3. The tool prints, per labeled run: how many "surface" sources reach Park, how many "do_not_surface" sources reach Park, how many "too_thin" sources reach Park, and the operator role assigned to each "surface" source.
+4. Keep the three self-checks from the branch script (URL hash, ID exists in the archive, row count).
+5. `npm run build` must pass. Do not change the expected result of any existing self-check.
+6. Confirm the tool reproduces the `main` row of the baseline table above.
 
-### Task 3. Explain the first set of tables
+State one limit clearly in your report: the archive holds retained excerpts, not full page text. Say which parts of a categorization change the archive can test and which it cannot.
 
-State how the per-source tables in `antigravity_analysis.md` were produced, and why 219 rows carry IDs and URLs that are not in the archive. The operator needs to know whether a script produced them or whether they were written by hand.
+### Task 3. Write a design proposal. No code.
 
-### Task 4. Report back
+Write one proposal that covers the three defects together. Put it in `workspace/antigravity_analysis.md`, replacing the current content once Task 1 is done. For each of the three parts, give:
 
-Replace section 2 of `workspace/antigravity_analysis.md` with the regenerated results, and add the answers to Tasks 1 and 3 at the top. Keep the report short: totals per run, the link to the data file on GitHub, and details only for sources whose decision changed.
+- the rule in plain words
+- why it is general, and not fitted to the sites in the two label files
+- the score you expect on the yardstick and on the holdout
+- what it could get wrong
+
+Constraints:
+
+- **No per-vertical lexicons.** Five hardcoded vocabularies repeat the original design. The next vertical would return "unknown" again.
+- **No rule may depend on the specific hosts, page titles or source IDs in the label files.** General signals are fine, for example first-person statements, the structure of a forum thread, or the marks of sales copy.
+- **Design against the yardstick. Check the holdout once.** Do not tune against the holdout.
+- **Do not weaken a gate to make the numbers work.** In particular, do not derive "proven" from single keywords.
+
+Pass criteria are in the two label files. In short: all 7 real items reach Park with a sensible private-sector role, no noise item reaches Park on either list, and thin or blocked pages stay out with a reason that names the extraction problem.
+
+Out of scope for this proposal: making per-source Advance reachable, the cluster gate and decision ledger, budget caps, module deletions, and the query plan. The two runs used the same seed and returned very different kinds of pages. Record what you notice about the queries as observations. Propose no query change yet.
+
+### Task 4. SSH hosts
+
+The operator sees two SSH hosts in your project picker: `chessa-ec2-chatgpt` and `goose-worker-aven`.
+
+1. **Aven work uses only your local checkout and the `goose-worker-aven` host.** That is the host named in `USER_MANUAL.md:118` and in `.agents/skills/session-closeout/SKILL.md`.
+2. **Never connect to `chessa-ec2-chatgpt` for Aven work.** It belongs to Chessa, a separate project with its own agent. Do not read from it, write to it, or run anything on it.
+3. Report, for every session since 2026-11-23: where the work was done (local, or which host), and whether any command was run on `chessa-ec2-chatgpt`. If one was, list it.
+4. Report, read-only, what commit the `goose-worker-aven` host is on and whether any Aven research process is running there. Do not pull, start or stop anything on the host without the operator's approval.
+
+### Task 5. Create a research skill for Exa and Tavily
+
+The operator has connected Exa and Tavily for you. Create a skill so that you use both whenever you need information from outside the repository.
+
+1. If your skill system supports a global skill that applies in every project, create it there. Otherwise create it in the Aven repository beside `session-closeout`. Use the same `SKILL.md` format, with a `name` and a `description` that says when the skill applies. Report the path you used.
+2. **When it applies:** any time you need outside information. Examples: library or API documentation, an error message, how a website structures its pages, facts about a vendor or a market, checking a claim before you repeat it.
+3. **Use both tools, each for what it does best.** The operator tested them on 2026-11-20 and found:
+   - **Exa** is strongest at finding a specific or obscure page when you describe the page you want, and at company lookups. Its agent mode returns structured results with a source per field. Treat "exclude X" in an Exa request as a preference, not a hard filter.
+   - **Tavily** is strongest at a cited research summary that lists its sources and its gaps. Its domain filter is a hard filter, which makes it good for forum-only or single-site searches. It can also extract and crawl pages. When extracting a page for a specific figure, extract without a query, because a query can trim out the figure you wanted.
+   - Check your own tool list for the exact tool names. Do not assume them.
+4. **For anything a decision will rest on, run both and compare.** Where they disagree, say so and say which source you trust and why.
+5. **A search snippet is not a source.** Open the page before you cite it. Cite the URL and the date you read it. Say plainly what you could not confirm.
+6. **Mind the cost.** Both tools are paid. Start with an ordinary search. Use the research and agent modes only when an ordinary search has not answered the question.
+7. **Never put an API key in a file, a commit, a report or a chat message.**
+8. **Keep it separate from Aven's evidence.** Exa and Tavily are for your own research. Nothing found through them goes into Aven's source queue, her runs, her archive or her decisions. Aven's evidence comes only through her own pipeline and budget controls. Do not wire either tool into Aven's code. If you think one of them would make a better search provider for Aven, say so in your report as a suggestion for the operator.
+
+### Task 6. Report back
+
+Update `workspace/antigravity_analysis.md`. Keep it short:
+
+1. Task 1 corrections (regenerated section 3).
+2. Task 2: commit hash on `main`, and the tool's output for both labeled runs.
+3. Task 3: the design proposal.
+4. Task 4: the SSH answers.
+5. Task 5: the skill's path and its full text.
 
 ## On hold until the operator says otherwise
 
-- Merging `exp/connector-intake-refinements`, in whole or in part.
-- Any change to role inference (`inferOperatorRole`, `inferBuyerRole`, `ROLE_TERMS`). The five-vertical lexicon proposal is not approved. It repeats the original design with five hardcoded vocabularies instead of one, and the next vertical Aven searches would return "unknown" again. The operator will first supply a labeled list of the 24 sources from run `20261028T222943Z`, and any role fix will be judged against that list.
-- Bridging live discovery to the admission gate and decision ledger (Phase 2 of the earlier plan).
-- The worker budget cap change (Phase 3).
-- Deleting the queue-worker, materializer and offline-sourcing modules (Phase 4).
+- Any code change to role inference, categorization, `inferClaimResult` or the gates. Task 3 is a proposal only.
+- Bridging live discovery to the admission gate and decision ledger.
+- The worker budget cap change.
+- Deleting the queue-worker, materializer and offline-sourcing modules.
+- Any live or paid Aven run.
 
 ## Standing rules for reports
 
-- Cite files by repository path and line, not by local `file:///` path.
-- Every source ID and URL in a report must come from a file in the repository.
+- Every source ID, URL, figure and code quotation in a report must come from a file in the repository or from a command you ran. Nothing from memory.
+- Cite files by repository path and line. Say which branch the line numbers refer to.
 - If something was not run or could not be verified, say so in that sentence.
+- If you change what an existing test or self-check expects, say so at the top of the report.
